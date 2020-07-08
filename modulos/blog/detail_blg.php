@@ -5,6 +5,10 @@ if(!isset($_SESSION["correo"]) && !isset($_SESSION["password"])){
   header('Location: ../../index.php?error=Por favor, logueese');      
 }*/
 require_once '../../conexion/bd.php';
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+  }
+  $usuario = $_SESSION["nombre"];
 $id = $_GET['id'];
       $consulta = "SELECT * FROM blog_usr WHERE id = $id";
       $resultado = mysqli_query($mysqli, $consulta);
@@ -38,6 +42,7 @@ $id = $_GET['id'];
                 <form action="edit_blg.php" method="Post">
                 <div class="form-group">
                     <input type="hidden" class="form-control" name="id" id="id"  value="<?php echo $fila['id']; ?>">
+                    <input type="hidden" class="form-control" name="usuario" id="usuario"  value="<?php echo $usuario; ?>">
                     <input type="text" class="form-control" name="titulo" id="titulo" value="<?php echo $fila['titulo']; ?>">
                 </div>
                 <div class="form-group">

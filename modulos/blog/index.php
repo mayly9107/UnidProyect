@@ -6,6 +6,11 @@ if(!isset($_SESSION["correo"]) && !isset($_SESSION["password"])){
   header('Location: ../../index.php');      
 }*/
 include_once("../../conexion/bd.php");
+if (session_status() == PHP_SESSION_NONE) {
+  session_start();
+}
+$usuario = $_SESSION["nombre"];
+echo $usuario;
 ?>
 
 <!DOCTYPE html>
@@ -62,7 +67,7 @@ include_once("../../conexion/bd.php");
                 <?php } ?>
                 <td><a href="detail_blg.php?id=<?php echo $fila['id']; ?>">Editar</a></td>
                 <td><a href="delete_blg.php?id=<?php echo $fila['id']; ?>">Eliminar</a></td>
-            </tr>investigar cuantos join existen, campo comparativo entre todos
+            </tr>
             <?php }  ?>
             </tbody>
         </table>

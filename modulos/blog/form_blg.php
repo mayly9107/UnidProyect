@@ -5,6 +5,10 @@ if(!isset($_SESSION["correo"]) && !isset($_SESSION["password"])){
   header('Location: ../../index.php?error=Por favor, logueese');      
 }*/
 require_once '../../conexion/bd.php';
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+  }
+  $usuario = $_SESSION["nombre"];
 ?>
 <!DOCTYPE html>
 <html lang="es-MX">
@@ -34,6 +38,7 @@ require_once '../../conexion/bd.php';
                 <form action="insert_blg.php" method="Post">
                 <div class="form-group">
                     <label for="titulo" class="thead-dark">Título</label>
+                    <input type="hidden" class="form-control" name="usuario" id="usuario"  value="<?php echo $usuario; ?>">
                     <input type="text" class="form-control" name="titulo" id="titulo" placeholder="Ingresa el titulo">
                 </div>
                 <div class="form-group">
