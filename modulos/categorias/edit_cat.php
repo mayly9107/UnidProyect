@@ -10,5 +10,6 @@
     usuario = '$usuario'
     where id= $id";
     mysqli_query($mysqli, $consulta);
+    
     header("location: index.php")
 ?>

@@ -12,8 +12,8 @@ include_once("../../conexion/bd.php");
 if (session_status() == PHP_SESSION_NONE) {
   session_start();
 }
-$sesion["nombre"] = $_SESSION["nombre"];
-echo "Bienvenid@: ". $sesion["nombre"];
+$usuario = $_SESSION["nombre"];
+echo "Bienvenid@: ". $usuario;
 ?>
 
 <!DOCTYPE html>

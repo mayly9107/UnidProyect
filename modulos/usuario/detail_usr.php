@@ -5,6 +5,10 @@ if(!isset($_SESSION["correo"]) && !isset($_SESSION["password"])){
   header('Location: ../../index.php?error=Por favor, logueese');      
 }*/
 require_once '../../conexion/bd.php';
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+  }
+  $usuario = $_SESSION["nombre"];
 $id = $_GET["id"];
 $consulta = "SELECT * FROM datos_usr WHERE id = $id";
     $resultado = mysqli_query($mysqli, $consulta);
@@ -40,6 +44,7 @@ $consulta = "SELECT * FROM datos_usr WHERE id = $id";
                 <form action="edit_usr.php" method="Post">
                 <div class="form-group">
                     <input type="hidden" class="form-control" name="id" id="id"  value="<?php echo $fila['id']; ?>">
+                    <input type="hidden" class="form-control" name="usuario" id="usuario"  value="<?php echo $usuario; ?>">
                     <input type="text" class="form-control" name="nombre" id="nombre" value="<?php echo $fila['nombre']; ?>">
                 </div>
                 <div class="form-group">
